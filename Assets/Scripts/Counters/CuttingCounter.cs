@@ -19,7 +19,7 @@ public class CuttingCounter : BaseCounter {
     public override void Interact(Player player) {
         if (!HasKitchenObject()) {
             if (player.HasKitchenObject()) {
-                // drop kitchen object (if that kitchen object can be cut) from player to this clear counter
+                // drop kitchen object (if that kitchen object can be cut) from player to this counter
                 if (CanBeCut(player.GetKitchenObject().GetKitchenObjectSO())) {
                     player.GetKitchenObject().SetKitchenObjectParent(this);
                     cuttingProgress = 0;
@@ -36,7 +36,7 @@ public class CuttingCounter : BaseCounter {
             if (player.HasKitchenObject()) {
                 // do nothing
             } else {
-                // give the kitchen object on this clear counter to the player
+                // give the kitchen object on this counter to the player
                 GetKitchenObject().SetKitchenObjectParent(player);
             }
         }
@@ -67,7 +67,7 @@ public class CuttingCounter : BaseCounter {
 
     private bool CanBeCut(KitchenObjectSO inputKitchenObjectSO) {
         CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOFromInput(inputKitchenObjectSO);
-        return cuttingRecipeSO.input != null;
+        return cuttingRecipeSO != null;
     }
 
     private KitchenObjectSO GetOutputKitchenObjectSOFromInput(KitchenObjectSO inputKitchenObjectSO) {
